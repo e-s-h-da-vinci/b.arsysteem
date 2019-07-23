@@ -11,8 +11,12 @@
 |
 */
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
+use ESHDaVinci\API\Client;
+
+$router->get('/', function (Client $client) use ($router) {
+    $members = $client->getListOfNames(true);
+    asort($members);
+    return view('login', ['members' => $members]);
 });
 
 $router->get('/auth', ['middleware' => 'auth', function () use ($router) {
