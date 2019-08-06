@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class AuthMiddleware
+class ViewMiddleware
 {
     /**
      * Handle an incoming request.
@@ -15,10 +15,8 @@ class AuthMiddleware
      */
     public function handle($request, Closure $next)
     {
-        $session = $request->session;
-        if (is_null($session->get('userId'))) {
-            return redirect('login');
-        }
+        $path = $request->getPathInfo();
+        view()->share('url', $path);
 
         return $next($request);
     }

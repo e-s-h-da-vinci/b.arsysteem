@@ -5,7 +5,7 @@
     <head>
       <meta charset="utf-8">
 
-      <title>Da Vinci - @yield('title')</title>
+      <title>B.arsysteem - @yield('title')</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
 
       <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
@@ -17,8 +17,18 @@
     <body>
     	<div class="header">
     		<div class="ui container">
-    			<h1 class="mainTitle">@yield('title')</h1>
-    			<div class="menu">@yield('menu')</div>
+    			<h1 class="mainTitle">B.arsysteem</h1>
+                @if($login_user)
+                    <h3 class="subTitle">
+                        @if($login_user['infix'])
+                            Welcome {{ $login_user['first_name'] }} {{ $login_user['infix'] }} {{ $login_user['last_name'] }}
+                            @if ($login_user['is_board'])&nbsp;<div class="ui purple horizontal label">Board</div>@endif, <a href="/logout">logout?</a>
+                        @else
+                            Welcome {{ $login_user['first_name'] }} {{ $login_user['last_name'] }}
+                            @if ($login_user['is_board'])&nbsp;<div class="ui purple horizontal label">Board</div>@endif, <a href="/logout">logout?</a>
+                        @endif
+                    </h3>
+                @endif
     			<img class="logo" src="{{ url('images/logo-full.svg') }}">
     		</div>
     	</div>
@@ -26,9 +36,22 @@
     		<div class="ui container">
     			<div class="mobile-header">
     				<h1>@yield('title')</h1>
-    				<div class="menu">@yield('menu')</div>
+                    @if($login_user)
+                        <h3>
+                            @if($login_user['infix'])
+                                Welcome {{ $login_user['first_name'] }} {{ $login_user['infix'] }} {{ $login_user['last_name'] }}
+                                @if ($login_user['is_board'])&nbsp;<div class="ui purple horizontal label">Board</div>@endif, <a href="/logout">logout?</a>
+                            @else
+                                Welcome {{ $login_user['first_name'] }} {{ $login_user['last_name'] }}
+                                @if ($login_user['is_board'])&nbsp;<div class="ui purple horizontal label">Board</div>@endif, <a href="/logout">logout?</a>
+                            @endif
+                        </h3>
+                    @endif
     			</div>
           @yield('content')
+          <div class="footer">
+              <p class="grey">B.arsysteem v{{ env('APP_VERSION') }} by Christiaan Goossens, maintained by the CommunicatCie.</p>
+          </div>
       </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

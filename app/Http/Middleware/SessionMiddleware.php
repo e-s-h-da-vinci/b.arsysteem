@@ -18,6 +18,13 @@ class SessionMiddleware
     {
         // Add a session onto the request
         $request->merge(["session" => new SessionHelper()]);
+
+        if (is_null($request->session->get('userData'))) {
+            view()->share('login_user', '');
+        } else {
+            view()->share('login_user', $request->session->get('userData'));
+        }
+
         return $next($request);
     }
 }

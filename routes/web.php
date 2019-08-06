@@ -11,14 +11,10 @@
 |
 */
 
-use ESHDaVinci\API\Client;
-
-$router->get('/', function (Client $client) use ($router) {
-    $members = $client->getListOfNames(true);
-    asort($members);
-    return view('login', ['members' => $members]);
-});
-
-$router->get('/auth', ['middleware' => 'auth', function () use ($router) {
-    return $router->app->version();
-}]);
+$router->get('/login', 'LoginController@login');
+$router->post('/login', 'LoginController@processLogin');
+$router->get('/logout', ['middleware' => 'auth', 'uses' => 'LoginController@logout']);
+$router->get('/', ['middleware' => 'auth', 'uses' => 'MainController@home']);
+$router->get('/profile', ['middleware' => 'auth', 'uses' => 'MainController@profile']);
+$router->get('/bar', ['middleware' => 'auth', 'uses' => 'MainController@bar']);
+$router->get('/bows', ['middleware' => 'auth', 'uses' => 'MainController@bows']);

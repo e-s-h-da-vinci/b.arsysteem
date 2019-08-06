@@ -57,6 +57,7 @@ $app->singleton(
 */
 
 $app->middleware([
+   App\Http\Middleware\ViewMiddleware::class,
    App\Http\Middleware\SessionMiddleware::class
 ]);
 
