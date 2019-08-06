@@ -13,11 +13,3 @@
      </div>
     </div>
 @endsection
-
-@section('scripts')
-<script>
-  $('select.dropdown')
-  .dropdown()
-;
-</script>
-@endsection

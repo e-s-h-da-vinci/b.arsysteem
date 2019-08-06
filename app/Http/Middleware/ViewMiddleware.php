@@ -15,6 +15,7 @@ class ViewMiddleware
      */
     public function handle($request, Closure $next)
     {
+        setlocale(LC_MONETARY, 'de_DE.UTF-8');
         $path = $request->getPathInfo();
         view()->share('url', $path);
 

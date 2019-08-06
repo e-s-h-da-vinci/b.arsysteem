@@ -17,4 +17,5 @@ $router->get('/logout', ['middleware' => 'auth', 'uses' => 'LoginController@logo
 $router->get('/', ['middleware' => 'auth', 'uses' => 'MainController@home']);
 $router->get('/profile', ['middleware' => 'auth', 'uses' => 'MainController@profile']);
 $router->get('/bar', ['middleware' => 'auth', 'uses' => 'MainController@bar']);
+$router->post('/bar', ['middleware' => 'auth', 'uses' => 'MainController@processBar']);
 $router->get('/bows', ['middleware' => 'auth', 'uses' => 'MainController@bows']);
