@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use ESHDaVinci\API\Client;
 use App\Repositories\BarRepository;
 use App\Repositories\BowRepository;
+use App\Repositories\TransactionRepository;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -12,17 +13,19 @@ class AdminController extends Controller
     private $client;
     private $barData;
     private $bowData;
+    private $transData;
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(Client $client, BarRepository $barData, BowRepository $bowData)
+    public function __construct(Client $client, BarRepository $barData, BowRepository $bowData, TransactionRepository $transData)
     {
         $this->client = $client;
         $this->barData = $barData;
         $this->bowData = $bowData;
+        $this->transData = $transData;
     }
 
     public function home()
@@ -55,5 +58,16 @@ class AdminController extends Controller
         }
 
         return redirect('/board/bar?status=fail');
+    }
+
+
+    public function payments()
+    {
+        $transactions = $this->transData->getTransactions();
+        $members = $this->client->getListOfNames();
+        return view('pages.board_payments', [
+            'transactions' => $transactions,
+            'members' => $members
+        ]);
     }
 }

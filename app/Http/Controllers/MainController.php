@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use ESHDaVinci\API\Client;
 use App\Repositories\BarRepository;
 use App\Repositories\BowRepository;
+use App\Repositories\TransactionRepository;
 use Illuminate\Http\Request;
 
 class MainController extends Controller
@@ -12,17 +13,19 @@ class MainController extends Controller
     private $client;
     private $barData;
     private $bowData;
+    private $transData;
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(Client $client, BarRepository $barData, BowRepository $bowData)
+    public function __construct(Client $client, BarRepository $barData, BowRepository $bowData, TransactionRepository $transData)
     {
         $this->client = $client;
         $this->barData = $barData;
         $this->bowData = $bowData;
+        $this->transData = $transData;
     }
 
     public function home()
@@ -68,6 +71,23 @@ class MainController extends Controller
         }
 
         return redirect('/bar?status=fail');
+    }
+
+    public function processBarAddCredit(Request $request)
+    {
+        if (!isset($request->id)) {
+            return redirect('/bar?status=fail');
+        }
+
+        $prodId = $request->id;
+        $id = $request->session->get('userId');
+        $result = $this->transData->purchaseBarSaldoWithUser($id, $prodId);
+
+        if (!$result) {
+            return redirect('/bar?status=fail');
+        }
+
+        return redirect('/pay/' . $result);
     }
 
     public function bows(Request $request)

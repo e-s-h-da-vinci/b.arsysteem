@@ -3,11 +3,11 @@
 @section('title', 'Login')
 
 @section('header')
-    <link href="{{ url('css/login.css') }}" rel="stylesheet">
+    <link href="{{ url('css/small.css') }}" rel="stylesheet">
 @endsection
 
 @section('content')
-  <div class="login ui container center aligned">
+  <div class="small ui container center aligned">
      @if($error === "1")
          <div class="ui yellow message">Incorrect credentials. Try again.</div>
      @elseif($error === "2")

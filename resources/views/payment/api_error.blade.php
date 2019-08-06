@@ -9,7 +9,7 @@
 @section('content')
   <div class="small ui container center aligned">
      <div class="ui segment">
-       The B.arsysteem app is currently offline due to downtime at Lassie. Sorry!
+       The B.arsysteem app is currently offline due to downtime at Sisow. Sorry!
      </div>
     </div>
 @endsection

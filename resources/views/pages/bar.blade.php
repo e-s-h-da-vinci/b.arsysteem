@@ -35,7 +35,7 @@
     You can add credit through iDeal below. Pick the amount you want, and click the button.<br/><br/>
     <form class="ui form" method="post" action="/bar/add_credit">
         <div class="field">
-            <select class="ui fluid dropdown">
+            <select class="ui fluid dropdown" name="id">
                 @foreach($upgradables as $amount):
                     <option value="{{$amount['id']}}">{{ $amount['name']}}</option>
                 @endforeach

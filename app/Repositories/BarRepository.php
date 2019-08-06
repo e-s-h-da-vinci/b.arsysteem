@@ -12,6 +12,11 @@ class BarRepository
         return BarItem::where(['product' => true, 'hidden' => false])->orderBy('name', 'ASC')->get();
     }
 
+    public function getUpgradable($id)
+    {
+        return BarItem::where(['id' => $id, 'product' => false, 'hidden' => false])->first();
+    }
+
     public function getUpgradables()
     {
         return BarItem::where(['product' => false, 'hidden' => false])->orderBy('name', 'ASC')->get();
@@ -49,7 +54,7 @@ class BarRepository
         return $saldo->save();
     }
 
-    public function addSaldo($id, $amount)
+    public function addSaldo($id, $amount, $itemId = 1)
     {
         if (!$this->checkSaldoExists($id)) {
             return false;
@@ -66,8 +71,8 @@ class BarRepository
         // Always make sure that 0 is the manual recharge
         $transaction = new BarTransaction();
         $transaction->user_id = $id;
-        $transaction->bar_item_id = 1;
-        $transaction->amount = 0 - $amount;
+        $transaction->bar_item_id = $itemId;
+        $transaction->amount = $amount; // Positive for up
         if (!$transaction->save()) {
             return false;
         }
@@ -113,7 +118,7 @@ class BarRepository
                 $transaction = new BarTransaction();
                 $transaction->user_id = $id;
                 $transaction->bar_item_id = $prodKey;
-                $transaction->amount = $prod->price;
+                $transaction->amount = 0 - $prod->price;
                 if (!$transaction->save()) {
                     return false;
                 }

@@ -20,6 +20,7 @@ $router->get('/', ['middleware' => 'auth', 'uses' => 'MainController@home']);
 $router->get('/profile', ['middleware' => 'auth', 'uses' => 'MainController@profile']);
 $router->get('/bar', ['middleware' => 'auth', 'uses' => 'MainController@bar']);
 $router->post('/bar', ['middleware' => 'auth', 'uses' => 'MainController@processBar']);
+$router->post('/bar/add_credit', ['middleware' => 'auth', 'uses' => 'MainController@processBarAddCredit']);
 $router->get('/bows', ['middleware' => 'auth', 'uses' => 'MainController@bows']);
 $router->post('/bows', ['middleware' => 'auth', 'uses' => 'MainController@processBow']);
 
@@ -27,3 +28,8 @@ $router->post('/bows', ['middleware' => 'auth', 'uses' => 'MainController@proces
 $router->get('/board', ['middleware' => ['auth', 'board'], 'uses' => 'AdminController@home']);
 $router->get('/board/bar', ['middleware' => ['auth', 'board'], 'uses' => 'AdminController@bar']);
 $router->post('/board/bar/add_credit', ['middleware' => ['auth', 'board'], 'uses' => 'AdminController@addBarCredit']);
+$router->get('/board/payments', ['middleware' => ['auth', 'board'], 'uses' => 'AdminController@payments']);
+
+// Payment
+$router->get('/pay/{id}', 'PaymentController@pay');
+$router->post('/pay/{id}', 'PaymentController@processPay');

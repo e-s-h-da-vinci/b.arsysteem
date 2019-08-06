@@ -6,8 +6,11 @@
     "type": "project",
     "require": {
         "php": ">=7.1.3",
+        "e-s-h-da-vinci/api-lib": "dev-master",
+        "fruitcakestudio/omnipay-sisow": "^3.0",
+        "hashids/hashids": "^3.0",
         "laravel/lumen-framework": "5.8.*",
-        "e-s-h-da-vinci/api-lib": "dev-master"
+        "league/omnipay": "^3.0"
     },
     "require-dev": {
         "fzaninotto/faker": "^1.4",

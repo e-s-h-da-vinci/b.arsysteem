@@ -55,7 +55,7 @@
                 <td>{{ $members[$transaction['user_id']] ?? 'Unknown, deleted?' }}</td>
                 <td>{{ $transaction['product']['name'] }}</td>
                 <td>{{ date('d-m-Y - H:i:s', strtotime($transaction['updated_at'])) }}</td>
-                <td>&euro; {{ money_format('%!n', 0 - $transaction['amount']) }}</td>
+                <td>&euro; {{ money_format('%!n', $transaction['amount']) }}</td>
               </tr>
               @endforeach
             </tbody>
