@@ -3,6 +3,12 @@
 @section('innerContent')
     <p class="grey">Welcome to the bar! Your saldo is: <b>&euro; {{ money_format('%!n', $saldo) }}</b>.</p>
 
+    @if($status === "ok")
+        <div class="ui green message">Successfully entered your transaction into the system. Your new saldo is: <b>&euro; {{ money_format('%!n', $saldo) }}</b>.</div>
+    @elseif($status === "fail")
+        <div class="ui red message">Failed to properly process your transaction. Please try again.</div>
+    @endif
+
     <form class="ui form" method="post">
       <div class="field">
           <table class="ui celled table">
@@ -50,7 +56,7 @@
               @foreach($transactions as $transaction)
               <tr>
                 <td>{{ $transaction['product']['name'] }}</td>
-                <td>{{ date('d-m-Y - H:i', strtotime($transaction['updated_at'])) }}</td>
+                <td>{{ date('d-m-Y - H:i:s', strtotime($transaction['updated_at'])) }}</td>
               </tr>
               @endforeach
             </tbody>

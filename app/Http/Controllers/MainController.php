@@ -39,19 +39,32 @@ class MainController extends Controller
         $items = $this->barData->getAllBarItems();
         $transactions = $this->barData->getTransactionsForUser($id);
         $upgradables = $this->barData->getUpgradables();
+        $status = $request->status;
 
         return view('pages.bar', [
             'items' => $items,
             'saldo' => $saldo,
             'transactions' => $transactions,
-            'upgradables' => $upgradables
+            'upgradables' => $upgradables,
+            'status' => $status
         ]);
     }
 
     public function processBar(Request $request)
     {
-        echo json_encode($request->all());
-        die();
+        if (!isset($request->amount)) {
+            return redirect('/bar?status=fail');
+        }
+
+        $amounts = $request->amount;
+        $id = $request->session->get('userId');
+        $result = $this->barData->purchaseWithUser($id, $amounts);
+
+        if ($result) {
+            return redirect('/bar?status=ok');
+        }
+
+        return redirect('/bar?status=fail');
     }
 
     public function bows()
