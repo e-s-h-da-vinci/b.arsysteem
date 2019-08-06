@@ -6,6 +6,11 @@ use App\Models\BowUse;
 
 class BowRepository
 {
+    public function getAllUsedBows()
+    {
+        return BowUse::with('bow')->orderBy('updated_at', 'DESC')->limit(20)->get();
+    }
+
     public function getUsedBows($id)
     {
         return BowUse::where(['user_id' => $id])->with('bow')->orderBy('updated_at', 'DESC')->limit(20)->get();

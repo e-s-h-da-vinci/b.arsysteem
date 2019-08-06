@@ -25,4 +25,19 @@
           </div>
       </div>
     </div>
+    <div class="ui stackable grid">
+      <div class="eight wide column">
+          <div class="ui card fluid">
+            <div class="content">
+              <div class="header">Bow Use List</div>
+            </div>
+            <div class="content">
+                <a href="/board/bows"><button class="ui purple basic button">Bar Use List</button></a>
+            </div>
+          </div>
+      </div>
+      <div class="eight wide column">
+
+      </div>
+    </div>
 @endsection

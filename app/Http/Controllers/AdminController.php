@@ -70,4 +70,15 @@ class AdminController extends Controller
             'members' => $members
         ]);
     }
+
+
+    public function bows()
+    {
+        $use = $this->bowData->getAllUsedBows();
+        $members = $this->client->getListOfNames();
+        return view('pages.board_bows', [
+            'bows' => $use,
+            'members' => $members
+        ]);
+    }
 }
