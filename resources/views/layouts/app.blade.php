@@ -21,11 +21,9 @@
                 @if($login_user)
                     <h3 class="subTitle">
                         @if($login_user['infix'])
-                            Welcome {{ $login_user['first_name'] }} {{ $login_user['infix'] }} {{ $login_user['last_name'] }}
-                            @if ($login_user['is_board'])&nbsp;<div class="ui purple horizontal label">Board</div>@endif, <a href="/logout">logout?</a>
+                            Welcome {{ $login_user['first_name'] }} {{ $login_user['infix'] }} {{ $login_user['last_name'] }}@if ($login_user['is_board'])&nbsp;&nbsp;<div class="ui purple horizontal label">Board</div>@endif, <a href="/logout">logout?</a>
                         @else
-                            Welcome {{ $login_user['first_name'] }} {{ $login_user['last_name'] }}
-                            @if ($login_user['is_board'])&nbsp;<div class="ui purple horizontal label">Board</div>@endif, <a href="/logout">logout?</a>
+                            Welcome {{ $login_user['first_name'] }} {{ $login_user['last_name'] }}@if ($login_user['is_board'])&nbsp;&nbsp;<div class="ui purple horizontal label">Board</div>@endif, <a href="/logout">logout?</a>
                         @endif
                     </h3>
                 @endif
@@ -39,11 +37,9 @@
                     @if($login_user)
                         <h3>
                             @if($login_user['infix'])
-                                Welcome {{ $login_user['first_name'] }} {{ $login_user['infix'] }} {{ $login_user['last_name'] }}
-                                @if ($login_user['is_board'])&nbsp;<div class="ui purple horizontal label">Board</div>@endif, <a href="/logout">logout?</a>
+                                Welcome {{ $login_user['first_name'] }} {{ $login_user['infix'] }} {{ $login_user['last_name'] }}@if ($login_user['is_board'])&nbsp;&nbsp;<div class="ui purple horizontal label">Board</div>@endif, <a href="/logout">logout?</a>
                             @else
-                                Welcome {{ $login_user['first_name'] }} {{ $login_user['last_name'] }}
-                                @if ($login_user['is_board'])&nbsp;<div class="ui purple horizontal label">Board</div>@endif, <a href="/logout">logout?</a>
+                                Welcome {{ $login_user['first_name'] }} {{ $login_user['last_name'] }}@if ($login_user['is_board'])&nbsp;&nbsp;<div class="ui purple horizontal label">Board</div>@endif, <a href="/logout">logout?</a>
                             @endif
                         </h3>
                     @endif

@@ -16,6 +16,11 @@
               <a  class="{{ ($url === '/profile') ? 'active item' : 'item' }}" href="/profile">
                 My Profile
               </a>
+              @if($login_user['is_board'])
+                  <a  class="{{ ($url === '/board') ? 'active item' : 'item' }}" href="/board">
+                    Board
+                  </a>
+              @endif
             </div>
         </div>
       <div class="twelve wide column">@yield('innerContent')</div>

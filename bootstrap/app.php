@@ -63,6 +63,7 @@ $app->middleware([
 
 $app->routeMiddleware([
      'auth' => App\Http\Middleware\AuthMiddleware::class,
+     'board' => App\Http\Middleware\BoardCheckMiddleware::class,
 ]);
 
 /*

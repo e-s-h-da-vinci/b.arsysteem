@@ -19,6 +19,7 @@ class BarTransaction extends Migration
             $table->unsignedBigInteger('bar_item_id');
             $table->timestamps();
             $table->foreign('bar_item_id')->references('id')->on('bar_items');
+            $table->decimal('amount');
         });
     }
 
