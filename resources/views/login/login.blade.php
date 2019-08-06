@@ -20,7 +20,7 @@
      <div class="ui segment">
        <form class="ui large form" method="post">
         <div class="field">
-          <select class="ui search dropdown" name="userId">
+          <select class="ui search dropdown" name="userId" required>
             <option value="">Select your name</option>
             @foreach ($members as $value => $name)
               <option value="{{ $value }}">{{ $name }}</option>
@@ -30,7 +30,7 @@
         <div class="field">
           <div class="ui left icon input">
             <i class="lock icon"></i>
-            <input type="password" name="pincode" placeholder="Pincode">
+            <input type="password" name="pincode" placeholder="Pincode" pattern="[0-9]{4,10}" maxlength="10">
           </div>
         </div>
         <button class="ui button large violet fluid" type="submit">Login</button>
