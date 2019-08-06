@@ -44,7 +44,7 @@
         <button class="ui button" type="submit">Add Credit through iDeal</button>
     </form>
 
-    <h4 class="grey">My Latest Transactions</h4>
+    <h4 class="grey">Latest Transactions (max 40)</h4>
         <table class="ui celled table">
             <thead>
               <tr>

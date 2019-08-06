@@ -9,12 +9,12 @@ class BarRepository
 {
     public function getAllBarItems()
     {
-        return BarItem::where(['product' => true, 'hidden' => false])->get();
+        return BarItem::where(['product' => true, 'hidden' => false])->orderBy('name', 'ASC')->get();
     }
 
     public function getUpgradables()
     {
-        return BarItem::where(['product' => false, 'hidden' => false])->get();
+        return BarItem::where(['product' => false, 'hidden' => false])->orderBy('name', 'ASC')->get();
     }
 
     public function getSaldoForUser($id)
@@ -25,7 +25,7 @@ class BarRepository
 
     public function getTransactionsForUser($id)
     {
-        return BarTransaction::where(['user_id' => $id])->with('product')->orderBy('updated_at', 'DESC')->get();
+        return BarTransaction::where(['user_id' => $id])->with('product')->orderBy('updated_at', 'DESC')->limit(40)->get();
     }
 
     private function processOnSaldo($id, $price)

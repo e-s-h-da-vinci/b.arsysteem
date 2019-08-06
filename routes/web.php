@@ -19,3 +19,4 @@ $router->get('/profile', ['middleware' => 'auth', 'uses' => 'MainController@prof
 $router->get('/bar', ['middleware' => 'auth', 'uses' => 'MainController@bar']);
 $router->post('/bar', ['middleware' => 'auth', 'uses' => 'MainController@processBar']);
 $router->get('/bows', ['middleware' => 'auth', 'uses' => 'MainController@bows']);
+$router->post('/bows', ['middleware' => 'auth', 'uses' => 'MainController@processBow']);
