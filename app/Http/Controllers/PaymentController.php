@@ -37,15 +37,15 @@ class PaymentController extends Controller
             return redirect('');
         }
 
+        if ($payment->paid) {
+            return view('payment.done', [
+                'payment' => $payment
+            ]);
+        }
+
         /** Detect if trxId is set */
         $trxId = $request->trxid;
         if (!isset($trxId)) {
-            if ($payment->paid) {
-                return view('payment.done', [
-                    'payment' => $payment
-                ]);
-            }
-
             $response = $this->gateway->fetchIssuers()->send();
             if ($response->isSuccessful()) {
                 $banks = $response->getIssuers();
