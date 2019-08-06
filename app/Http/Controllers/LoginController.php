@@ -48,7 +48,12 @@ class LoginController extends Controller
             // Now auth
             $bool = $this->client->authenticate($data['userId'], $data['pincode']);
             if (!$bool) {
-                // Booh
+                // Check if no password is registered
+                $needsReplacing = $this->client->hasToSetPassword($data['userId']);
+                if ($needsReplacing) {
+                    return redirect('login/setNewPassword/'.$data['userId']);
+                }
+
                 return redirect('login?error=1');
             }
 
@@ -60,6 +65,31 @@ class LoginController extends Controller
             $request->session->set('userData', $member);
             return redirect('');
         } catch (\Exception $e) {
+            return redirect('login?error=2');
+        }
+    }
+
+    public function setNewPassword(Request $request)
+    {
+        return view('login.new_password');
+    }
+
+    public function processNewPassword(Request $request, $id)
+    {
+        $pincode = $request->pincode;
+        if (!isset($pincode)) {
+            return redirect('login?error=3');
+        }
+
+        $needsReplacing = $this->client->hasToSetPassword($id);
+        if (!$needsReplacing) {
+            return redirect('login?error=3');
+        }
+
+        $bool = $this->client->setNewPassword($id, $pincode);
+        if ($bool) {
+            return redirect('login?error=4');
+        } else {
             return redirect('login?error=2');
         }
     }

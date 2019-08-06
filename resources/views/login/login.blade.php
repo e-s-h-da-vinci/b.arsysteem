@@ -12,6 +12,10 @@
          <div class="ui yellow message">Incorrect credentials. Try again.</div>
      @elseif($error === "2")
          <div class="ui yellow message">Server issues. Please try again later.</div>
+     @elseif($error === "3")
+         <div class="ui yellow message">User failure. Please try again.</div>
+     @elseif($error === "4")
+         <div class="ui green message">New pin set. Please login again.</div>
      @endif
      <div class="ui segment">
        <form class="ui large form" method="post">

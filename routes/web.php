@@ -13,6 +13,8 @@
 
 $router->get('/login', 'LoginController@login');
 $router->post('/login', 'LoginController@processLogin');
+$router->get('/login/setNewPassword/{id}', 'LoginController@setNewPassword');
+$router->post('/login/setNewPassword/{id}', 'LoginController@processNewPassword');
 $router->get('/logout', ['middleware' => 'auth', 'uses' => 'LoginController@logout']);
 
 // Normal pages
