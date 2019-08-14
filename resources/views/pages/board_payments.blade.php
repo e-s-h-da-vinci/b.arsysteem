@@ -24,7 +24,7 @@
                 <td>{{ $transaction['encoded_id'] }}</td>
                 <td>{{ $transaction['ext_ref'] }}</td>
                 <td>{{ $transaction['description'] }}</td>
-                <td>&euro; {{ money_format('%!n', $transaction['amount']) }}</td>
+                <td>@euro($transaction['amount'])</td>
                 <td>{{ $transaction['paid'] ? 'Yes' : 'No' }}</td>
                 <td>{{ date('d-m-Y - H:i:s', strtotime($transaction['created_at'])) }}</td>
                 <td>{{ date('d-m-Y - H:i:s', strtotime($transaction['updated_at'])) }}</td>

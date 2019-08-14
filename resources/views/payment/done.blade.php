@@ -16,7 +16,7 @@
               <h4 class="ui sub header">Description</h4>
               <p>{{ $payment['description'] }}</p>
                 <h4 class="ui sub header">Amount</h4>
-                <p>&euro; {{ money_format('%!n', $payment['amount']) }}</p><br/>
+                <p>@euro($payment['amount'])</p><br/>
               <div class="ui green message">You have paid! You can close this window, or go to the B.arsysteem.</div>
             </div>
             <div class="extra content">

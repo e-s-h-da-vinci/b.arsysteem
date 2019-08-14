@@ -21,7 +21,7 @@ $app = new Laravel\Lumen\Application(
     dirname(__DIR__)
 );
 
-// $app->withFacades();
+$app->withFacades();
 $app->withEloquent();
 
 /*
@@ -78,6 +78,8 @@ $app->routeMiddleware([
 */
 
 $app->register(App\Providers\DaVinciApiServiceProvider::class);
+$app->register(App\Providers\MoneyViewServiceProvider::class);
+
 
 /*
 |--------------------------------------------------------------------------

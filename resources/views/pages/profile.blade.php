@@ -45,7 +45,7 @@
             <tr>
               <td>Home Address</td>
               <td>{{ $login_user['address']['street'] ?: 'Unknown Street' }} {{ $login_user['address']['number'] ?: 'Unknown Number' }},<br/>
-              {{ $login_user['address']['city'] ?: 'Unknown City' }} {{ $login_user['address']['country'] ?: 'Unknown Country' }}</td>
+              {{ $login_user['address']['city'] ?: 'Unknown City' }}, {{ $login_user['address']['country'] ?: 'Unknown Country' }}</td>
             </tr>
           </tbody>
         </table>

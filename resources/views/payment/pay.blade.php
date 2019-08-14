@@ -17,7 +17,7 @@
             <h4 class="ui sub header">Description</h4>
             <p>{{ $payment['description'] }}</p>
               <h4 class="ui sub header">Amount</h4>
-              <p>&euro; {{ money_format('%!n', $payment['amount']) }}</p><br/>
+              <p>@euro($payment['amount'])</p><br/>
             <p>Please pick your bank:</p>
             <select class="ui fluid dropdown" name="bankId">
                 @foreach($banks as $key => $bank):

@@ -1,10 +1,10 @@
 @extends('layouts.base')
 @section('title', 'Bar')
 @section('innerContent')
-    <p class="grey">Welcome to the bar! Your saldo is: <b>&euro; {{ money_format('%!n', $saldo) }}</b>.</p>
+    <p class="grey">Welcome to the bar! Your saldo is: @euro($saldo)</b>.</p>
 
     @if($status === "ok")
-        <div class="ui green message">Successfully entered your transaction into the system. Your new saldo is: <b>&euro; {{ money_format('%!n', $saldo) }}</b>.</div>
+        <div class="ui green message">Successfully entered your transaction into the system. Your new saldo is: @euro($saldo)</b>.</div>
     @elseif($status === "fail")
         <div class="ui red message">Failed to properly process your transaction. Please try again.</div>
     @endif
@@ -22,7 +22,7 @@
                 <tr>
                   <td class="two wide"><input type="text" name="amount[{{ $item['id'] }}]" value="0"></td>
                   <td>{{ $item['name'] }}</td>
-                  <td class="two wide">&euro; {{ money_format('%!n', $item['price']) }}</td>
+                  <td class="two wide">@euro($item['price'])</td>
                 </tr>
                 @endforeach
               </tbody>
