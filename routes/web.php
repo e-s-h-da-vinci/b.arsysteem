@@ -26,6 +26,9 @@ $router->post('/bar/add_credit', ['middleware' => 'auth', 'uses' => 'MainControl
 $router->get('/bows', ['middleware' => 'auth', 'uses' => 'MainController@bows']);
 $router->post('/bows', ['middleware' => 'auth', 'uses' => 'MainController@processBow']);
 
+// Ladder
+$router->get('/ladder', ['middleware' => 'auth', 'uses' => 'LadderController@listScores']);
+
 // Board only
 $router->get('/board', ['middleware' => ['auth', 'board'], 'uses' => 'AdminController@home']);
 $router->get('/board/bar', ['middleware' => ['auth', 'board'], 'uses' => 'AdminController@bar']);

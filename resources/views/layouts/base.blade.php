@@ -13,6 +13,9 @@
               <a  class="{{ ($url === '/bows') ? 'active item' : 'item' }}" href="/bows">
                 Bow Registration
               </a>
+              <a  class="{{ ($url === '/ladder') ? 'active item' : 'item' }}" href="/ladder">
+                Ladder
+              </a>
               <a  class="{{ ($url === '/profile') ? 'active item' : 'item' }}" href="/profile">
                 My Profile
               </a>
