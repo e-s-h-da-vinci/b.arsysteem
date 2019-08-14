@@ -8,7 +8,7 @@
     <form class="ui form" method="post" action="/board/bar/add_credit">
         <div class="field">
             <label>Member</label>
-            <select class="ui fluid dropdown" name="user_id">
+            <select class="ui fluid search dropdown" name="user_id">
                 @foreach($members as $id => $member):
                     <option value="{{$id}}">{{ $member}}</option>
                 @endforeach

@@ -16,8 +16,7 @@ class MoneyViewServiceProvider extends ServiceProvider
     {
         // DO NOT EVER EDIT THIS; THIS IS HORRIBLE.
         Blade::directive('euro', function ($expression) {
-            return '
-                <?php
+            return '<?php
                     $amount = (float) ' . $expression. ';
                     if ($amount < 0) {
                         echo ("<span class=\'red\'>&euro; " . money_format(\'%!n\', $amount) . "</span>");

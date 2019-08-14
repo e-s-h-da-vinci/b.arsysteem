@@ -54,10 +54,17 @@
           </thead>
             <tbody>
               @foreach($transactions as $transaction)
-              <tr>
-                <td>{{ $transaction['product']['name'] }}</td>
-                <td>{{ date('d-m-Y - H:i:s', strtotime($transaction['updated_at'])) }}</td>
-              </tr>
+                @if ($transaction['product']['id'] === 1)
+                  <tr>
+                    <td>{{ $transaction['product']['name'] }} (@euro($transaction['amount']))</td>
+                    <td>{{ date('d-m-Y - H:i:s', strtotime($transaction['updated_at'])) }}</td>
+                  </tr>
+                @else
+                    <tr>
+                      <td>{{ $transaction['product']['name'] }}</td>
+                      <td>{{ date('d-m-Y - H:i:s', strtotime($transaction['updated_at'])) }}</td>
+                    </tr>
+                @endif
               @endforeach
             </tbody>
           </table>
