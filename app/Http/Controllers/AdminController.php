@@ -81,4 +81,37 @@ class AdminController extends Controller
             'members' => $members
         ]);
     }
+
+
+    public function customPayment(Request $request)
+    {
+        $status = $request->status;
+        $trxId = $request->trxId;
+        $url = "http://".$_SERVER['HTTP_HOST'];
+        return view('pages.board_addPayment', [
+            'status' => $status,
+            'paymentUrl' => $url . '/pay/' . $trxId
+        ]);
+    }
+
+
+    public function customPaymentPost(Request $request)
+    {
+        $user = $request->session->get('userId');
+        $description = $request->description;
+        $amount = $request->amount;
+
+        $transactionId = $this->transData->customTransactionWithUser($user, $description, $amount);
+        if (!$transactionId) {
+            return redirect('/board/payment/add?status=fail');
+        }
+
+        return redirect('/board/payment/add?status=success&trxId=' . $transactionId);
+    }
+
+
+    public function addMember()
+    {
+        return view('pages.board_addMember');
+    }
 }

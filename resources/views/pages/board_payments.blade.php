@@ -20,7 +20,7 @@
             <tbody>
               @foreach($transactions as $transaction)
               <tr>
-              <td>{{ $members[$transaction['user_id']] }}</td>
+              <td>{{ $members[$transaction['user_id']] ?? 'Unknown' }}</td>
                 <td>{{ $transaction['encoded_id'] }}</td>
                 <td>{{ $transaction['ext_ref'] }}</td>
                 <td>{{ $transaction['description'] }}</td>

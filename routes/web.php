@@ -32,6 +32,9 @@ $router->get('/board/bar', ['middleware' => ['auth', 'board'], 'uses' => 'AdminC
 $router->post('/board/bar/add_credit', ['middleware' => ['auth', 'board'], 'uses' => 'AdminController@addBarCredit']);
 $router->get('/board/payments', ['middleware' => ['auth', 'board'], 'uses' => 'AdminController@payments']);
 $router->get('/board/bows', ['middleware' => ['auth', 'board'], 'uses' => 'AdminController@bows']);
+$router->get('/board/members/add', ['middleware' => ['auth', 'board'], 'uses' => 'AdminController@addMember']);
+$router->get('/board/payment/add', ['middleware' => ['auth', 'board'], 'uses' => 'AdminController@customPayment']);
+$router->post('/board/payment/add', ['middleware' => ['auth', 'board'], 'uses' => 'AdminController@customPaymentPost']);
 
 // Payment
 $router->get('/pay/{id}', 'PaymentController@pay');

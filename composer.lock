@@ -245,12 +245,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/e-s-h-da-vinci/api-lib.git",
-                "reference": "2aee5cdec662e77074f49066722f68f9cc3e96ab"
+                "reference": "17cf7e91aa0e2292a34b4c945ec1c12c90c37f3f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/e-s-h-da-vinci/api-lib/zipball/2aee5cdec662e77074f49066722f68f9cc3e96ab",
-                "reference": "2aee5cdec662e77074f49066722f68f9cc3e96ab",
+                "url": "https://api.github.com/repos/e-s-h-da-vinci/api-lib/zipball/17cf7e91aa0e2292a34b4c945ec1c12c90c37f3f",
+                "reference": "17cf7e91aa0e2292a34b4c945ec1c12c90c37f3f",
                 "shasum": ""
             },
             "require": {
@@ -274,7 +274,7 @@
                 "source": "https://github.com/e-s-h-da-vinci/api-lib/tree/master",
                 "issues": "https://github.com/e-s-h-da-vinci/api-lib/issues"
             },
-            "time": "2019-08-14T08:34:30+00:00"
+            "time": "2019-08-14T18:36:17+00:00"
         },
         {
             "name": "egulias/email-validator",

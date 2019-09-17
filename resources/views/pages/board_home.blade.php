@@ -37,7 +37,15 @@
           </div>
       </div>
       <div class="eight wide column">
-
+          <div class="ui card fluid">
+            <div class="content">
+              <div class="header">Other</div>
+            </div>
+            <div class="content">
+                <a href="/board/members/add"><button class="ui purple basic button">Sign up new member</button></a>
+                <a href="/board/payment/add"><button class="ui purple basic button">Custom payment</button></a>
+            </div>
+          </div>
       </div>
     </div>
 @endsection

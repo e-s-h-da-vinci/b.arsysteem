@@ -22,6 +22,26 @@ class TransactionRepository
         });
     }
 
+    public function customTransactionWithUser($id, $description, $amount)
+    {
+        if ((double) $amount < 1) {
+            return false;
+        }
+
+        $payment = new PaymentTransaction();
+        $payment->description = $description;
+        $payment->amount = (double) $amount;
+        $payment->paid = false;
+        $payment->machine_instruction = $id;
+
+        if (!$payment->save()) {
+            return false;
+        }
+
+        $id = $this->hashids->encode($payment->id);
+        return $id;
+    }
+
     public function purchaseBarSaldoWithUser($id, $productId)
     {
         $prod = $this->barData->getUpgradable($productId);
@@ -71,7 +91,14 @@ class TransactionRepository
     private function processMachineInstruction($payment)
     {
         $mi = $payment->machine_instruction;
+
         $parts = explode(":", $mi);
+
+        // Only ID
+        if (count($parts) === 1) {
+            return true;
+        }
+
         $userId = (int) array_shift($parts);
         $instruction = array_shift($parts);
         $options = $parts;
