@@ -110,8 +110,118 @@ class AdminController extends Controller
     }
 
 
-    public function addMember()
+    public function addMember(Request $request)
     {
-        return view('pages.board_addMember');
+        $status = $request->status;
+        return view('pages.board_addMember', [
+            'status' => $status
+        ]);
+    }
+
+    public function addMemberPost(Request $request)
+    {
+        /**
+         * First level processing: basic
+         */
+
+        $required = [
+            'initials',
+            'first_name',
+            'surname',
+            'address',
+            'address_number',
+            'postal_address',
+            'city',
+            'home_phone',
+            'primary_email',
+            'institution',
+            'birthdate',
+            'study'
+        ];
+
+        foreach ($required as $r) {
+            if (!isset($request->{$r}) && $request->{$r} !== "") {
+                return redirect('/board/members/add?status=fail');
+            }
+        }
+
+        /**
+         * Second level check: check if conditions match
+         */
+
+        if ($request->ssc_check !== "on" || $request->general_check !== "on") {
+            return redirect('/board/members/add?status=fail');
+        }
+
+        try {
+            $birthdate = date("Y-m-d", strtotime($request->birthdate));
+        } catch (\Exception $e) {
+            return redirect('/board/members/add?status=fail');
+        }
+
+        $membershipChoice = "";
+        $personRecord = [
+            'active' => true,
+            'initials' => $request->initials,
+            'first_name' => $request->first_name,
+            'infix' => $request->infix ?? null,
+            'last_name' => $request->surname,
+            'address_street' => $request->address,
+            'address_number' => $request->address_number,
+            'address_zip' => $request->postal_address,
+            'address_city' => $request->city,
+            'address_country' => $request->country ?: "The Netherlands",
+            'phone_home' => $request->home_phone,
+            'email_primary' => $request->primary_email,
+            'pref_email' => '2',
+            'pref_newsletter' => '1',
+            'pref_mail' => '2',
+            'pref_magazine' => '3',
+            'department_id' => $request->institution,
+            'birthdatebug' => $birthdate,
+            'external_NHB' => "8", // So ugly, so hardcoded :(
+            "EHBO_certificate" => "9",
+            "honorary_member" => "13",
+            "bhv_certificate" => "5",
+            "bar_certificate" => "3",
+            "study" => $request->study,
+            "generation_id" => date('Y')
+        ];
+
+        /**
+         * Third level check: check if either external nhb, or selection is made
+         */
+        if ($request->external_nhb) {
+            $membershipChoice = "EXTERNAL_MEMBER";
+            $personRecord['external_NHB'] = "7";
+            $personRecord['NHB_number'] = $request->nhb_number;
+        } elseif (isset($request->membership) && $request->membership === "RECR") {
+            $membershipChoice = "RECREATIONIST";
+        } elseif (isset($request->membership) && $request->membership === "MEM") {
+            $membershipChoice = "MEMBER";
+        } else {
+            return redirect('/board/members/add?status=fail');
+        }
+
+        try {
+            $this->client->createPerson($personRecord);
+            $name = $request->first_name . " " . $request->infix . " " . $request->surname;
+            $this->sendMailForPersonCreation($name, $membershipChoice);
+        } catch (\Exception $e) {
+            return redirect('/board/members/add?status=fail');
+        }
+
+        return redirect('/board/members/add?status=success');
+    }
+
+    private function sendMailForPersonCreation($name, $membershipChoice)
+    {
+        $from = "barsysteem@eshdavinci.nl";
+        $to = "secretaris@eshdavinci.nl";
+        $subject = "New member subscribed!";
+        $message = "Dear secretary, a new member subscribed: " . $name . " and they want to get the membership type of: " . $membershipChoice . ". Please arrange this in Lassie. Kind regards, B.arsysteem";
+        $headers = "From:" . $from;
+        mail($to, $subject, $message, $headers);
+        return;
     }
 }

@@ -4,10 +4,15 @@
 
 @section('innerContent')
     <h3 class="grey">Welcome, new member!</h3>
+    @if($status === "success")
+        <div class="ui green message">Succesfully submitted your details! Welcome to Da Vinci!</div>
+    @elseif($status === "fail")
+        <div class="ui red message">Oops, submitting your form failed. Make sure that you filled all required fields and that you chose a membership type.</div>
+    @endif
         <p>Please fill the form below to sign up to be an archer at Da Vinci.<br/><span class="grey">All fields with a star are required. More details about why the fields are required, can be found in our Privacy Policy, as published on the website.</span></p><br/>
         <form class="ui form" method="post">
             <h4 class="ui dividing header">Personal Information</h4>
-            <div class="three fields">
+            <div class="four fields">
                   <div class="required field">
                     <label>Initials</label>
                     <input required type="text" name="initials" placeholder="E.">
@@ -15,6 +20,10 @@
                   <div class="field required">
                     <label>First Name</label>
                     <input required type="text" name="first_name" placeholder="Edward">
+                  </div>
+                  <div class="field">
+                    <label>Infix (Tussenvoegsel)</label>
+                    <input type="text" name="infix" placeholder="von">
                   </div>
                   <div class="field required">
                     <label>Last Name (Surname)</label>
@@ -62,9 +71,18 @@
                      </div>
              <h4 class="ui dividing header">Quick check, are you a student?</h4>
                 <div class="ui violet message">To join Da Vinci, you are required to have a <b>Student</b> Sports Card at the SSCE (Student Sports Centre Eindhoven). Only Student (including PhD) cards, for either half a year, or a year are eligable for membership. TU/e Employees or Alumni cannot join Da Vinci.</div>
+                <div class="ui segment">
+                 <div class="field required">
+                   <div class="ui toggle checkbox">
+                     <input type="checkbox" name="ssc_check" class="hidden" required>
+                     <label>I am a student (regular or PhD), and I have an active yearly sportcard at the SSC.</label>
+                   </div>
+                 </div>
+                </div>
                 <br/>
                 <div class="field required">
                     <label>Where do you study?</label>
+
                     <select required name="institution" class="ui dropdown">
                       <option value="">Select Institution</option>
                       <option value="TUE">Eindhoven University of Technology</option>
@@ -91,13 +109,13 @@
                                    <label>Pick your preferred type:</label>
                                     <div class="field">
                                       <div class="ui radio checkbox">
-                                        <input type="radio" name="membership_type" class="hidden">
+                                        <input type="radio" name="membership" value="RECR" class="hidden">
                                         <label>Recreationist (&euro;40,-)</label>
                                       </div>
                                     </div>
                                     <div class="field">
                                       <div class="ui radio checkbox">
-                                        <input  type="radio" name="membership_type" class="hidden">
+                                        <input  type="radio" name="membership" value="MEM" class="hidden">
                                         <label>Full Membership (&euro;75,-)</label>
                                       </div>
                                   </div><br/>
@@ -129,7 +147,7 @@
                <div class="ui segment">
                 <div class="field required">
                   <div class="ui toggle checkbox">
-                    <input type="checkbox" name="ssc_check" class="hidden" required>
+                    <input type="checkbox" name="general_check" class="hidden" required>
                     <label>I would like to become a member/recreationist at Da Vinci. I know that I will be obligated to pay the required fee after submitting this form. I am aware that I can request the Bylaws, House Rules, Safety Rules and Privacy Policy through a board member, or the website. I am aware that I am expected to read these documents before joining Da Vinci, and I agree with the contents of these documents. I consent to being added to said Whatsapp groups, with the right to leave at any time, as well as to the newsletter mailinglist.</label>
                   </div>
                 </div>

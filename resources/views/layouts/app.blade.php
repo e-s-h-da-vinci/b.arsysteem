@@ -46,7 +46,7 @@
     			</div>
           @yield('content')
           <div class="footer">
-              <p class="grey">B.arsysteem v{{ env('APP_VERSION') }} by Christiaan Goossens, maintained by the CommunicatCie.</p>
+              <p class="grey">B.arsysteem v1.2 by Christiaan Goossens, maintained by the CommunicatCie.</p>
           </div>
       </div>
     </div>
