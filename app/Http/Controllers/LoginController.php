@@ -29,7 +29,7 @@ class LoginController extends Controller
         $failed = $request->query('error');
 
         try {
-            $members = $this->client->getListOfNames(true);
+            $members = $this->client->getListOfNames(true, true);
             asort($members);
             return view('login.login', ['members' => $members, 'error' => $failed]);
         } catch (\Exception $e) {
